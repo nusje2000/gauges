@@ -1,0 +1,1 @@
+link_libraries(arduino_core)
