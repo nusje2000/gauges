@@ -3,34 +3,21 @@
 
 #include "../Unit/Pressure.h"
 #include "U8g2lib.h"
-
-enum BoostDisplayMode {
-    SIMPLE,
-    ADVANCED
-};
-
-enum BoostDisplayUnit {
-    PSI,
-    BAR
-};
+#include "../Configuration.h"
 
 class BoostGauge {
 public:
-    BoostGauge(U8G2 *u8g2);
+    BoostGauge(U8G2 *u8g2, BoostConfiguration *configuration);
 
     void update(Pressure pressure);
-
-    void setDisplayUnit(BoostDisplayUnit mode);
-
-    void setDisplayMode(BoostDisplayMode unit);
 
 private:
     Pressure highestReading = Pressure::fromBars(0);
     Pressure latestReading = Pressure::fromBars(0);
     unsigned long highestReadingTimestamp = 0;
-    BoostDisplayMode displayMode = ADVANCED;
-    BoostDisplayUnit displayUnit = BAR;
+
     U8G2 *u8g2;
+    BoostConfiguration *configuration;
 
     void updateReading(Pressure reading);
 
