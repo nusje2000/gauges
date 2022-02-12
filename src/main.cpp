@@ -1,13 +1,13 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 #include <Wire.h>
-#include "Sensor/ManifoldAbsolutePressure.h"
+#include "Sensor/PressureSensor.h"
 #include "Gauge/BoostGauge.h"
 
 BoostConfiguration boostConfiguration;
 U8G2_SH1106_128X64_NONAME_F_HW_I2C boost_screen(U8G2_R0, U8X8_PIN_NONE);
 BoostGauge boostGauge(&boost_screen, &boostConfiguration);
-ManifoldAbsolutePressure mapSensor = ManifoldAbsolutePressure::TN079800_3280(A3);
+TN079800_3280 mapSensor(A3);
 
 void setup(void) {
     Serial.begin(9600);
